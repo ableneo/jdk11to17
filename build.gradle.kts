@@ -1,20 +1,17 @@
-val JUNIT_VERSION = "5.9.3"
+import org.gradle.api.JavaVersion.VERSION_11
+import org.gradle.api.JavaVersion.VERSION_17
 
-val jdk17Profile = project.findProperty("jdk17") != null
+val JUNIT_VERSION = "5.9.3"
 
 plugins {
     java
 }
 
 java {
-    if (jdk17Profile) {
-        sourceCompatibility = JavaVersion.VERSION_17
-        targetCompatibility = JavaVersion.VERSION_17
-    } else {
-        sourceCompatibility = JavaVersion.VERSION_11
-        targetCompatibility = JavaVersion.VERSION_11
-    }
-    println("Setting Java compatibility mode to $sourceCompatibility")
+    val javaVersion = if (project.hasProperty("jdk17")) VERSION_17 else VERSION_11
+    sourceCompatibility = javaVersion
+    targetCompatibility = javaVersion
+    println("Setting Java compatibility mode to $javaVersion")
 }
 
 repositories {
