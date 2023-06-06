@@ -7,9 +7,9 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class PersonTest {
 
-    public static final String NAME = "Name";
-    public static final String SURNAME = "Surname";
-    public static final int AGE = 42;
+    private static final String NAME = "Name";
+    private static final String SURNAME = "Surname";
+    private static final int AGE = 42;
 
     @Test
     void personGettersReturnCorrectValues() {
@@ -47,5 +47,13 @@ class PersonTest {
     @Test
     void personCanNotHaveNegativeAge() {
         assertThatThrownBy(() -> new Person(NAME, SURNAME, -1)).isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @Test
+    void nameAndSurnameHaveStrippedWhitespaces() {
+        final Person person = new Person(" " + NAME + " ", " " + SURNAME + " ", AGE);
+
+        assertThat(person.getName()).isEqualTo(NAME);
+        assertThat(person.getSurname()).isEqualTo(SURNAME);
     }
 }
