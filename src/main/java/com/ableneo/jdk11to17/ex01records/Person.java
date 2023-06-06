@@ -1,6 +1,6 @@
 package com.ableneo.jdk11to17.ex01records;
 
-public class Person {
+public class Person implements HasAge {
 
     private final String name;
     private final String surname;
@@ -20,6 +20,7 @@ public class Person {
         return surname;
     }
 
+    @Override
     public int getAge() {
         return age;
     }
