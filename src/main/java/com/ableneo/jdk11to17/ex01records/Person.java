@@ -5,13 +5,11 @@ public class Person {
     private final String name;
     private final String surname;
     private final int age;
-    private final Address address;
 
-    public Person(String name, String surname, int age, Address address) {
+    public Person(String name, String surname, int age) {
         this.name = name;
         this.surname = surname;
         this.age = age;
-        this.address = address;
     }
 
     public String getName() {
@@ -25,10 +23,5 @@ public class Person {
     public int getAge() {
         return age;
     }
-
-    public Address getAddress() {
-        return address;
-    }
 }
-
 
