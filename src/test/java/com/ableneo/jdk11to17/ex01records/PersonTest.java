@@ -53,7 +53,7 @@ class PersonTest {
     void nameAndSurnameHaveStrippedWhitespaces() {
         final Person person = new Person(" " + NAME + " ", " " + SURNAME + " ", AGE);
 
-        assertThat(person.getName()).isEqualTo(NAME);
-        assertThat(person.getSurname()).isEqualTo(SURNAME);
+        assertThat(person.name()).isEqualTo(NAME);
+        assertThat(person.surname()).isEqualTo(SURNAME);
     }
 }
