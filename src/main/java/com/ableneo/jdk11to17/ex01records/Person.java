@@ -1,0 +1,34 @@
+package com.ableneo.jdk11to17.ex01records;
+
+public class Person {
+
+    private final String name;
+    private final String surname;
+    private final int age;
+    private final Address address;
+
+    public Person(String name, String surname, int age, Address address) {
+        this.name = name;
+        this.surname = surname;
+        this.age = age;
+        this.address = address;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getSurname() {
+        return surname;
+    }
+
+    public int getAge() {
+        return age;
+    }
+
+    public Address getAddress() {
+        return address;
+    }
+}
+
+
