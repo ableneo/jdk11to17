@@ -56,4 +56,11 @@ class PersonTest {
         assertThat(person.getName()).isEqualTo(NAME);
         assertThat(person.getSurname()).isEqualTo(SURNAME);
     }
+
+    @Test
+    void personHasAgeWithCorrectValue() {
+        final HasAge person = new Person(NAME, SURNAME, AGE);
+
+        assertThat(person.getAge()).isEqualTo(AGE);
+    }
 }
