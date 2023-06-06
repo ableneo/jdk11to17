@@ -5,6 +5,7 @@ val JUNIT_VERSION = "5.9.3"
 
 plugins {
     java
+    idea
 }
 
 java {
@@ -21,9 +22,17 @@ repositories {
 dependencies {
     implementation("org.apache.commons:commons-lang3:3.12.0")
     testImplementation("org.junit.jupiter:junit-jupiter-api:$JUNIT_VERSION")
+    testImplementation("org.assertj:assertj-core:3.24.2")
     testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:$JUNIT_VERSION")
 }
 
 tasks.test {
     useJUnitPlatform()
+}
+
+idea {
+    module {
+        isDownloadJavadoc = true
+        isDownloadSources = true
+    }
 }
