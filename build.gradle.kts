@@ -2,14 +2,17 @@ import org.gradle.api.JavaVersion.VERSION_11
 import org.gradle.api.JavaVersion.VERSION_17
 
 val JUNIT_VERSION = "5.9.3"
+val ENABLE_PREVIEW = "--enable-preview"
 
 plugins {
     java
     idea
 }
 
+fun Project.usesJdk17() = hasProperty("jdk17")
+
 java {
-    val javaVersion = if (project.hasProperty("jdk17")) VERSION_17 else VERSION_11
+    val javaVersion = if (project.usesJdk17()) VERSION_17 else VERSION_11
     sourceCompatibility = javaVersion
     targetCompatibility = javaVersion
     println("Setting Java compatibility mode to $javaVersion")
@@ -28,8 +31,23 @@ dependencies {
     testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:$JUNIT_VERSION")
 }
 
+fun MutableList<String>.enablePreviewIfSupported() {
+    if (project.usesJdk17()) {
+        add(ENABLE_PREVIEW)
+    }
+}
+
 tasks.test {
     useJUnitPlatform()
+    jvmArgs!!.enablePreviewIfSupported()
+}
+
+tasks.compileJava {
+    options.compilerArgs!!.enablePreviewIfSupported()
+}
+
+tasks.withType<JavaExec> {
+    jvmArgs!!.enablePreviewIfSupported()
 }
 
 idea {
