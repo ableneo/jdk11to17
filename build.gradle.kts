@@ -39,15 +39,18 @@ fun MutableList<String>.enablePreviewIfSupported() {
 
 tasks.test {
     useJUnitPlatform()
-    jvmArgs!!.enablePreviewIfSupported()
 }
 
-tasks.compileJava {
-    options.compilerArgs!!.enablePreviewIfSupported()
+tasks.withType<Test>().all {
+    setJvmArgs(mutableListOf<String>().apply { enablePreviewIfSupported() })
+}
+
+tasks.withType<JavaCompile>().all {
+    options.compilerArgs.enablePreviewIfSupported()
 }
 
 tasks.withType<JavaExec> {
-    jvmArgs!!.enablePreviewIfSupported()
+    setJvmArgs(mutableListOf<String>().apply { enablePreviewIfSupported() })
 }
 
 idea {
