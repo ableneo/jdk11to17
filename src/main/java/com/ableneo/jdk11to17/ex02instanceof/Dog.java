@@ -4,7 +4,8 @@ public class Dog extends Animal implements Barkable {
 
     private final DogBreed breed;
 
-    public Dog(DogBreed breed) {
+    public Dog(FurColor furColor, DogBreed breed) {
+        super(furColor);
         this.breed = breed;
     }
 

@@ -4,6 +4,7 @@ import org.junit.jupiter.api.Test;
 
 import static com.ableneo.jdk11to17.ex02instanceof.DogBreed.CHIHUAHUA;
 import static com.ableneo.jdk11to17.ex02instanceof.DogBreed.TERRIER;
+import static com.ableneo.jdk11to17.ex02instanceof.FurColor.*;
 import static org.mockito.Mockito.*;
 
 class AnimalVisitorTest {
@@ -12,8 +13,8 @@ class AnimalVisitorTest {
 
     @Test
     void callsBarkOnBarkableAnimal() {
-        final Dog dog = spy(new Dog(TERRIER));
-        final Supercat supercat = spy(new Supercat());
+        final Dog dog = spy(new Dog(BLACK, TERRIER));
+        final Supercat supercat = spy(new Supercat(ORANGE));
 
         animalVisitor.makeAnimalSound(dog);
         animalVisitor.makeAnimalSound(supercat);
@@ -24,8 +25,8 @@ class AnimalVisitorTest {
 
     @Test
     void callsMeowOnMeowableAnimal() {
-        final Cat cat = spy(new Cat());
-        final Supercat supercat = spy(new Supercat());
+        final Cat cat = spy(new Cat(GREY));
+        final Supercat supercat = spy(new Supercat(ORANGE));
 
         animalVisitor.makeAnimalSound(cat);
         animalVisitor.makeAnimalSound(supercat);
@@ -36,7 +37,7 @@ class AnimalVisitorTest {
 
     @Test
     void callsBarkAndMeowOnBarkableAndMeowableAnimal() {
-        final Supercat supercat = spy(new Supercat());
+        final Supercat supercat = spy(new Supercat(ORANGE));
 
         animalVisitor.makeAnimalSound(supercat);
 
@@ -46,7 +47,7 @@ class AnimalVisitorTest {
 
     @Test
     void doesNotCallBarkOnChihuahua() {
-        final Dog dog = spy(new Dog(CHIHUAHUA));
+        final Dog dog = spy(new Dog(BLACK, CHIHUAHUA));
 
         animalVisitor.makeAnimalSound(dog);
 
