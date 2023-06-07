@@ -22,6 +22,7 @@ repositories {
 dependencies {
     implementation("org.apache.commons:commons-lang3:3.12.0")
     testImplementation("org.junit.jupiter:junit-jupiter-api:$JUNIT_VERSION")
+    testImplementation("org.junit.jupiter:junit-jupiter-params:$JUNIT_VERSION")
     testImplementation("org.assertj:assertj-core:3.24.2")
     testImplementation("org.mockito:mockito-core:5.3.1")
     testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:$JUNIT_VERSION")
