@@ -1,6 +1,6 @@
 package com.ableneo.jdk11to17.ex04sealed;
 
-public class Rectangle extends Shape {
+public sealed class Rectangle extends Shape permits Square {
     private final double a;
     private final double b;
 

@@ -1,6 +1,6 @@
 package com.ableneo.jdk11to17.ex04sealed;
 
-public class Circle extends Shape {
+public final class Circle extends Shape {
     private final double radius;
 
     public Circle(double radius) {
