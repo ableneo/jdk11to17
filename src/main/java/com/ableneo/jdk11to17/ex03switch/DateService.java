@@ -19,17 +19,16 @@ public class DateService {
      */
     public TypeOfDay getTypeOfDay(LocalDate date) {
         final DayOfWeek dayOfWeek = date.getDayOfWeek();
-        switch (dayOfWeek) {
-            case SATURDAY:
-            case SUNDAY:
-                return TypeOfDay.WEEKEND;
-            default:
+        return switch (dayOfWeek) {
+            case SATURDAY, SUNDAY -> TypeOfDay.WEEKEND;
+            default -> {
                 if (date.getDayOfMonth() == 1 && date.getMonth() == Month.JANUARY) {
-                    return TypeOfDay.HOLIDAY;
+                    yield TypeOfDay.HOLIDAY;
                 } else {
-                    return TypeOfDay.WORKDAY;
+                    yield TypeOfDay.WORKDAY;
                 }
-        }
+            }
+        };
     }
 
 }
