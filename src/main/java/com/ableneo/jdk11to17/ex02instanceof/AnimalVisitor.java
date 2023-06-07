@@ -1,7 +1,6 @@
 package com.ableneo.jdk11to17.ex02instanceof;
 
 import static com.ableneo.jdk11to17.ex02instanceof.DogBreed.CHIHUAHUA;
-import static com.ableneo.jdk11to17.ex02instanceof.DogBreed.SHEPHERD;
 
 /**
  * Causes an {@link Animal} to emit its sound, based on animal's type.
@@ -14,16 +13,16 @@ import static com.ableneo.jdk11to17.ex02instanceof.DogBreed.SHEPHERD;
 public class AnimalVisitor {
 
     public void makeAnimalSound(Animal animal) {
-        if (animal instanceof Barkable) {
-            bark((Barkable) animal);
+        if (animal instanceof Barkable barkable) {
+            bark(barkable);
         }
-        if (animal instanceof Meowable) {
-            ((Meowable) animal).meow();
+        if (animal instanceof Meowable meowable) {
+            meowable.meow();
         }
     }
 
     private void bark(Barkable barkable) {
-        if (barkable instanceof Dog && (CHIHUAHUA == ((Dog) barkable).getBreed())) {
+        if (barkable instanceof Dog dog && CHIHUAHUA == dog.getBreed()) {
             return;
         }
         barkable.bark();
