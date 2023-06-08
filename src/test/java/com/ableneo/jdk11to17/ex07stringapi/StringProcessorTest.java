@@ -68,4 +68,18 @@ class StringProcessorTest {
         assertThat(indented).isEqualTo(HTML_TEMPLATE_UNINDENTED_AND_INDENTED_BY_2);
     }
 
+    @Test
+    void testTransformParseInt() {
+        final int transformed = "42".transform(Integer::parseInt);
+
+        assertThat(transformed).isEqualTo(42);
+    }
+
+    @Test
+    void testTransformArbitraryFunction() {
+        final String transformed = "Hello".transform(s -> s + ", world!");
+
+        assertThat(transformed).isEqualTo("Hello, world!");
+    }
+
 }
