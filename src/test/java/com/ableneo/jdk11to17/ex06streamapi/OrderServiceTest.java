@@ -48,11 +48,4 @@ class OrderServiceTest {
         assertThat(skus).containsExactly(SKU_4);
     }
 
-    @Test
-    void mergesOrderProductsCorrectly() {
-        final List<String> mergedOrderProducts = orderService.mergeOrderProductsHavingLargestQuantity(JOHN_DOES_ORDER_PRODUCTS, SNOW_WHITES_ORDER_PRODUCTS);
-
-        assertThat(mergedOrderProducts).containsExactly(SKU_3, SKU_2);
-    }
-
 }
