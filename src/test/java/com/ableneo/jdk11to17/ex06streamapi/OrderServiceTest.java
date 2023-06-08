@@ -15,19 +15,21 @@ class OrderServiceTest {
 
     private final Customer JOHN_DOE = new Customer("John", "Doe");
     private final Customer SNOW_WHITE = new Customer("Snow", "White");
+    private final List<OrderProduct> JOHN_DOES_ORDER_PRODUCTS = List.of(
+            new OrderProduct(SKU_1, 1),
+            new OrderProduct(SKU_2, 30)
+    );
+    private final List<OrderProduct> SNOW_WHITES_ORDER_PRODUCTS = List.of(
+            new OrderProduct(SKU_3, 5),
+            new OrderProduct(SKU_4, 20)
+    );
 
     private final OrderService orderService = new OrderService();
 
     @Test
     void returnsCorrectSkusForJohnDoe() {
-        final Order johnDoeOrder = new Order(JOHN_DOE, List.of(
-                new OrderProduct(SKU_1, 1),
-                new OrderProduct(SKU_2, 20)
-        ));
-        final Order snowWhiteOrder = new Order(SNOW_WHITE, List.of(
-                new OrderProduct(SKU_3, 1),
-                new OrderProduct(SKU_4, 20)
-        ));
+        final Order johnDoeOrder = new Order(JOHN_DOE, JOHN_DOES_ORDER_PRODUCTS);
+        final Order snowWhiteOrder = new Order(SNOW_WHITE, SNOW_WHITES_ORDER_PRODUCTS);
         final List<Order> orders = List.of(johnDoeOrder, snowWhiteOrder);
 
         final List<String> skus = orderService.getProductSkusForCustomerHavingQuantityMoreThan(orders, JOHN_DOE, 10);
@@ -37,19 +39,20 @@ class OrderServiceTest {
 
     @Test
     void returnsCorrectSkusForSnowWhite() {
-        final Order johnDoeOrder = new Order(JOHN_DOE, List.of(
-                new OrderProduct(SKU_1, 1),
-                new OrderProduct(SKU_2, 20)
-        ));
-        final Order snowWhiteOrder = new Order(SNOW_WHITE, List.of(
-                new OrderProduct(SKU_3, 1),
-                new OrderProduct(SKU_4, 20)
-        ));
+        final Order johnDoeOrder = new Order(JOHN_DOE, JOHN_DOES_ORDER_PRODUCTS);
+        final Order snowWhiteOrder = new Order(SNOW_WHITE, SNOW_WHITES_ORDER_PRODUCTS);
         final List<Order> orders = List.of(johnDoeOrder, snowWhiteOrder);
 
         final List<String> skus = orderService.getProductSkusForCustomerHavingQuantityMoreThan(orders, SNOW_WHITE, 10);
 
         assertThat(skus).containsExactly(SKU_4);
+    }
+
+    @Test
+    void mergesOrderProductsCorrectly() {
+        final List<String> mergedOrderProducts = orderService.mergeOrderProductsHavingLargestQuantity(JOHN_DOES_ORDER_PRODUCTS, SNOW_WHITES_ORDER_PRODUCTS);
+
+        assertThat(mergedOrderProducts).containsExactly(SKU_3, SKU_2);
     }
 
 }
