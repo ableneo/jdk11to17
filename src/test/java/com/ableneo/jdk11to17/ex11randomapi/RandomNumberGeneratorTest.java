@@ -4,15 +4,15 @@ import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-class RandomGeneratorTest {
+class RandomNumberGeneratorTest {
 
     private static final int SEED = 123654;
 
-    private final RandomGenerator randomGenerator = new RandomGenerator(SEED);
+    private final RandomNumberGenerator randomNumberGenerator = new RandomNumberGenerator(SEED);
 
     @Test
     void constantSeedReturnsConstantValue() {
-        assertThat(randomGenerator.nextInt()).isEqualTo(1897113197);
+        assertThat(randomNumberGenerator.nextInt()).isEqualTo(1897113197);
     }
 
 }

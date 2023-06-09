@@ -2,11 +2,11 @@ package com.ableneo.jdk11to17.ex11randomapi;
 
 import java.util.Random;
 
-public class RandomGenerator {
+public class RandomNumberGenerator {
 
     private final Random random;
 
-    public RandomGenerator(int seed) {
+    public RandomNumberGenerator(int seed) {
         random = new Random(seed);
     }
 
