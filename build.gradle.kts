@@ -2,6 +2,7 @@ import org.gradle.api.JavaVersion.VERSION_11
 import org.gradle.api.JavaVersion.VERSION_17
 
 val JUNIT_VERSION = "5.9.3"
+val SPRING_BOOT_VERSION = "2.7.6"
 val ENABLE_PREVIEW = "--enable-preview"
 
 plugins {
@@ -24,6 +25,7 @@ repositories {
 
 dependencies {
     implementation("org.apache.commons:commons-lang3:3.12.0")
+    implementation("org.springframework.boot:spring-boot-starter-webflux:$SPRING_BOOT_VERSION")
     testImplementation("org.junit.jupiter:junit-jupiter-api:$JUNIT_VERSION")
     testImplementation("org.junit.jupiter:junit-jupiter-params:$JUNIT_VERSION")
     testImplementation("org.assertj:assertj-core:3.24.2")
